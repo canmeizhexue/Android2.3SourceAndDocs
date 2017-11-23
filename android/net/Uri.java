@@ -31,7 +31,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.RandomAccess;
 
-/**
+/**The "four main components" of a hierarchical URI consist of
+        <scheme>://<authority><path>?<query>
+ *
+ *
+ *
  * Immutable URI reference. A URI reference includes a URI and a fragment, the
  * component of the URI following a '#'. Builds and parses URI references
  * which conform to
@@ -1650,7 +1654,7 @@ public abstract class Uri implements Parcelable, Comparable<Uri> {
 
     private static final char[] HEX_DIGITS = "0123456789ABCDEF".toCharArray();
 
-    /**
+    /**对字符串进行编码，字母、数字和非保留字符维持原状，其他字符进行编码，编码是以%开头的，
      * Encodes characters in the given string as '%'-escaped octets
      * using the UTF-8 scheme. Leaves letters ("A-Z", "a-z"), numbers
      * ("0-9"), and unreserved characters ("_-!.~'()*") intact. Encodes
@@ -1756,7 +1760,7 @@ public abstract class Uri implements Parcelable, Comparable<Uri> {
         return encoded == null ? s : encoded.toString();
     }
 
-    /**
+    /**检测字符是否允许不要编码，
      * Returns true if the given character is allowed.
      *
      * @param c character to check
@@ -1775,7 +1779,7 @@ public abstract class Uri implements Parcelable, Comparable<Uri> {
     /** Unicode replacement character: \\uFFFD. */
     private static final byte[] REPLACEMENT = { (byte) 0xFF, (byte) 0xFD };
 
-    /**
+    /**解码，
      * Decodes '%'-escaped octets in the given string using the UTF-8 scheme.
      * Replaces invalid octets with the unicode replacement character
      * ("\\uFFFD").
