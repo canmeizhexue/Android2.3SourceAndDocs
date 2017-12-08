@@ -931,7 +931,7 @@ public class WebView extends AbsoluteLayout
         }
     };
 
-    /**
+    /**构建实例，
      * Construct a new WebView with a Context object.
      * @param context A Context object used to access application assets.
      */
@@ -939,7 +939,7 @@ public class WebView extends AbsoluteLayout
         this(context, null);
     }
 
-    /**
+    /**xml里面定义的都是用这个，会使用默认的style
      * Construct a new WebView with layout parameters.
      * @param context A Context object used to access application assets.
      * @param attrs An AttributeSet passed to our parent.
@@ -958,7 +958,7 @@ public class WebView extends AbsoluteLayout
         this(context, attrs, defStyle, null);
     }
 
-    /**
+    /**最终版的构造函数，
      * Construct a new WebView with layout parameters, a default style and a set
      * of custom Javscript interfaces to be added to the WebView at initialization
      * time. This guarantees that these interfaces will be available when the JS
@@ -1014,8 +1014,9 @@ public class WebView extends AbsoluteLayout
             mZoomButtonsController.setZoomOutEnabled(canZoomOut);
         }
     }
-
+    //初始化，
     private void init() {
+        //因为webview是viewGroup,默认不会绘制，
         setWillNotDraw(false);
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -1605,7 +1606,7 @@ public class WebView extends AbsoluteLayout
         return returnList;
     }
 
-    /**
+    /**加载指定的url,并且可以加载指定的头，不能有通用的头，加上也不会起作用，
      * Load the given url with the extra headers.
      * @param url The url of the resource to load.
      * @param extraHeaders The extra headers sent with this url. This should not
@@ -1621,7 +1622,7 @@ public class WebView extends AbsoluteLayout
         clearHelpers();
     }
 
-    /**
+    /**加载指定的url,
      * Load the given url.
      * @param url The url of the resource to load.
      */

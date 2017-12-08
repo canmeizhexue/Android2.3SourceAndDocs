@@ -21,7 +21,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 
-/**
+/**检测触摸事件的不同手势，
  * Detects various gestures and events using the supplied {@link MotionEvent}s.
  * The {@link OnGestureListener} callback will notify users when a particular
  * motion event has occurred. This class should only be used with {@link MotionEvent}s
@@ -497,6 +497,7 @@ public class GestureDetector {
             if (mCurrentDownEvent != null) {
                 mCurrentDownEvent.recycle();
             }
+            //复制事件，
             mCurrentDownEvent = MotionEvent.obtain(ev);
             mAlwaysInTapRegion = true;
             mAlwaysInBiggerTapRegion = true;
@@ -509,6 +510,7 @@ public class GestureDetector {
                         + TAP_TIMEOUT + LONGPRESS_TIMEOUT);
             }
             mHandler.sendEmptyMessageAtTime(SHOW_PRESS, mCurrentDownEvent.getDownTime() + TAP_TIMEOUT);
+            //down事件，
             handled |= mListener.onDown(ev);
             break;
 

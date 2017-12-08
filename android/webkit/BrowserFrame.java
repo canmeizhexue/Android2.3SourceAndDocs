@@ -230,7 +230,7 @@ class BrowserFrame extends Handler {
         }
     }
 
-    /**
+    /**从网络或者文件系统加载指定的url,
      * Load a url from the network or the filesystem into the main frame.
      * Following the same behaviour as Safari, javascript: URLs are not passed
      * to the main frame, instead they are evaluated immediately.
@@ -242,6 +242,7 @@ class BrowserFrame extends Handler {
     public void loadUrl(String url, Map<String, String> extraHeaders) {
         mLoadInitFromJava = true;
         if (URLUtil.isJavaScriptUrl(url)) {
+            //是javascript
             // strip off the scheme and evaluate the string
             stringByEvaluatingJavaScriptFromString(
                     url.substring("javascript:".length()));
@@ -931,7 +932,7 @@ class BrowserFrame extends Handler {
      */
     private native void nativeGoBackOrForward(int steps);
 
-    /**
+    /**执行js代码，
      * stringByEvaluatingJavaScriptFromString will execute the
      * JS passed in in the context of this browser frame.
      * @param script A javascript string to execute
@@ -957,7 +958,7 @@ class BrowserFrame extends Handler {
 
     public native void clearCache();
 
-    /**
+    /**本地代码加载url,
      * Returns false if the url is bad.
      */
     private native void nativeLoadUrl(String url, Map<String, String> headers);

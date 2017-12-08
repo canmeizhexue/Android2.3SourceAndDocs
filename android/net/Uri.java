@@ -1889,7 +1889,7 @@ public abstract class Uri implements Parcelable, Comparable<Uri> {
         return decoded == null ? s : decoded.toString();
     }
 
-    /**
+    /**其实是俩个字符串构成的字符串对，一个是原始串(解码过后的串)，一个编码串
      * Support for part implementations.
      */
     static abstract class AbstractPart {

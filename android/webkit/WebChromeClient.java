@@ -311,7 +311,7 @@ public class WebChromeClient {
     public void getVisitedHistory(ValueCallback<String[]> callback) {
     }
 
-    /**
+    /**告诉客户端打开文件选择器，
      * Tell the client to open a file chooser.
      * @param uploadFile A ValueCallback to set the URI of the file to upload.
      *      onReceiveValue must be called to wake up the thread.

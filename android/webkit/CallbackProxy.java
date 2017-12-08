@@ -42,12 +42,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-/**
+/**这个类是一个代理类，所有的消息都是从WebCore线程里面传递来的，但是都会向ui线程发送相应的消息，
  * This class is a proxy class for handling WebCore -> UI thread messaging. All
  * the callback functions are called from the WebCore thread and messages are
  * posted to the UI thread for the actual client callback.
  */
-/*
+/*这个类是在ui线程里面创建对象，其实是在webview创建的时候进行创建的，
  * This class is created in the UI thread so its handler and any private classes
  * that extend Handler will operate in the UI thread.
  */
@@ -118,6 +118,7 @@ class CallbackProxy extends Handler {
 
     // Result transportation object for returning results across thread
     // boundaries.
+    //跨线程边界的返回结果，
     private static class ResultTransport<E> {
         // Private result object
         private E mResult;
@@ -212,6 +213,8 @@ class CallbackProxy extends Handler {
             return false;
         }
         boolean override = false;
+        //如果不设置的话，那么会调用默认的浏览器，
+        //回调webviewClient相关方法，webviewClient主要是给程序员自定义的接口
         if (mWebViewClient != null) {
             override = mWebViewClient.shouldOverrideUrlLoading(mWebView,
                     overrideUrl);
@@ -898,7 +901,7 @@ class CallbackProxy extends Handler {
         sendMessage(msg);
     }
 
-    /**
+    /**被webCore线程调用，向ui线程发送消息，等待ui线程处理完成，然后返回结果，
      * Called by the WebCore side
      */
     public boolean shouldOverrideUrlLoading(String url) {
@@ -909,6 +912,7 @@ class CallbackProxy extends Handler {
         msg.getData().putString("url", url);
         msg.obj = res;
         synchronized (this) {
+            //一直等待，，，
             sendMessage(msg);
             try {
                 wait();
@@ -1431,7 +1435,7 @@ class CallbackProxy extends Handler {
         msg.obj = callback;
         sendMessage(msg);
     }
-
+    //上传文件，
     private class UploadFile implements ValueCallback<Uri> {
         private Uri mValue;
         public void onReceiveValue(Uri value) {
@@ -1445,7 +1449,7 @@ class CallbackProxy extends Handler {
         }
     }
 
-    /**
+    /**被
      * Called by WebViewCore to open a file chooser.
      */
     /* package */ Uri openFileChooser() {
@@ -1455,6 +1459,7 @@ class CallbackProxy extends Handler {
         Message myMessage = obtainMessage(OPEN_FILE_CHOOSER);
         UploadFile uploadFile = new UploadFile();
         myMessage.obj = uploadFile;
+        //等待ui线程完成操作，
         synchronized (this) {
             sendMessage(myMessage);
             try {

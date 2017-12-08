@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.SparseArray;
 
-/**
+/**使用于ui的各种常量，比如超时时长，尺寸，距离等。推荐使用带Scaled字符串的方法，因为这些方法都是
  * Contains methods to standard constants used in the UI for timeouts, sizes, and distances.
  */
 public class ViewConfiguration {
@@ -186,7 +186,7 @@ public class ViewConfiguration {
         mOverflingDistance = OVERFLING_DISTANCE;
     }
 
-    /**
+    /**依赖于显示器的尺寸或者显示器的密度，
      * Creates a new configuration for the specified context. The configuration depends on
      * various parameters of the context, like the dimension of the display or the density
      * of the display.
@@ -197,6 +197,7 @@ public class ViewConfiguration {
      * @see android.util.DisplayMetrics
      */
     private ViewConfiguration(Context context) {
+        //获取显示器的一些信息，
         final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         final float density = metrics.density;
 
@@ -227,7 +228,7 @@ public class ViewConfiguration {
     public static ViewConfiguration get(Context context) {
         final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         final int density = (int) (100.0f * metrics.density);
-
+        //这个地方乘以100只是为了使用SparseArray,,,
         ViewConfiguration configuration = sConfigurations.get(density);
         if (configuration == null) {
             configuration = new ViewConfiguration(context);

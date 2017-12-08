@@ -285,7 +285,7 @@ final class WebViewCore {
     }
 
 
-    /**
+    /**被jni调用，打开文件选择器，上传文件，
      * Called by JNI.  Open a file chooser to upload a file.
      * @return String version of the URI plus the name of the file.
      * FIXME: Just return the URI here, and in FileSystem::pathGetFileName, call
@@ -670,7 +670,7 @@ final class WebViewCore {
         int mX;
         int mY;
     }
-
+    //实体数据
     static class GetUrlData {
         String mUrl;
         Map<String, String> mExtraHeaders;
