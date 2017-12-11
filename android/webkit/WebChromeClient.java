@@ -23,7 +23,7 @@ import android.view.View;
 
 public class WebChromeClient {
 
-    /**
+    /**网页加载进度，
      * Tell the host application the current progress of loading a page.
      * @param view The WebView that initiated the callback.
      * @param newProgress Current page loading progress, represented by
@@ -31,7 +31,7 @@ public class WebChromeClient {
      */
     public void onProgressChanged(WebView view, int newProgress) {}
 
-    /**
+    /**当前文档的标题变化了，
      * Notify the host application of a change in the document title.
      * @param view The WebView that initiated the callback.
      * @param title A String containing the new title of the document.

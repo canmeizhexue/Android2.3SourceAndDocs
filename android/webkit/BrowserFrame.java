@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
-
+//这个类有很多方法都是从native层调用，
 class BrowserFrame extends Handler {
 
     private static final String LOGTAG = "webkit";
@@ -240,6 +240,7 @@ class BrowserFrame extends Handler {
      *            will be replaced by the intrinsic value of the WebView.
      */
     public void loadUrl(String url, Map<String, String> extraHeaders) {
+        //后面又改回来了，
         mLoadInitFromJava = true;
         if (URLUtil.isJavaScriptUrl(url)) {
             //是javascript
@@ -753,7 +754,7 @@ class BrowserFrame extends Handler {
         return !synchronous ? loadListener : null;
     }
 
-    /**
+    /**设置加载进度，
      * Set the progress for the browser activity.  Called by native code.
      * Uses a delay so it does not happen too often.
      * @param newProgress An int between zero and one hundred representing

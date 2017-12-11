@@ -1085,7 +1085,7 @@ class CallbackProxy extends Handler {
     }
 
     //--------------------------------------------------------------------------
-    // WebChromeClient methods
+    // WebChromeClient methods  间接调用WebChromeClient的对应方法，
     //--------------------------------------------------------------------------
 
     public void onProgressChanged(int newProgress) {

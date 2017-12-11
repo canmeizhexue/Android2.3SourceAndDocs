@@ -3253,7 +3253,7 @@ public class WebView extends AbsoluteLayout
         return mCallbackProxy.getWebViewClient();
     }
 
-    /**
+    /**注册一个下载监听器，
      * Register the interface to be used when content can not be handled by
      * the rendering engine, and should be downloaded instead. This will replace
      * the current handler.
